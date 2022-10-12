@@ -309,8 +309,8 @@ fn generate_fixture_place(database: &ReflectionDatabase) -> String {
             | "WrapLayer"
             | "WrapTarget" => continue,
 
-            // WorldModel is not yet enabled.
-            "WorldModel" => continue,
+            // AdPortal and AdGui are not enabled.
+            "AdGui" | "AdPortal" => continue,
 
             "StarterPlayer" => {
                 instance.add_child(FixtureInstance::named("StarterPlayerScripts"));

@@ -1,0 +1,14 @@
+Add:
+  Model:
+    NeedsPivotMigration:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Bool
+      Scriptability: None
+    WorldPivotData:
+      DataType:
+        Value: OptionalCFrame
+      Serialization:
+        Type: Serializes
+      Scriptability: None
