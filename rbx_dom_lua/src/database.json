@@ -22270,7 +22270,7 @@
           "Enum": 0
         },
         "ScriptGuid": {
-          "String": "{613709A0-1C76-42DE-B116-879512BF7F5B}"
+          "String": "{1B2776F4-9E28-415C-AABB-FF4E39A5C856}"
         },
         "Source": {
           "String": ""
@@ -23803,7 +23803,7 @@
         },
         "MeshId": {
           "Name": "MeshId",
-          "Scriptability": "Read",
+          "Scriptability": "Custom",
           "DataType": {
             "Value": "Content"
           },
@@ -24683,7 +24683,7 @@
           "Content": ""
         },
         "ScriptGuid": {
-          "String": "{F903F813-F629-43BF-B7DD-00AA1C9CF8B6}"
+          "String": "{9DA2891D-EA15-4D90-A8F2-A5F789B8CD13}"
         },
         "Source": {
           "String": ""
@@ -33314,7 +33314,7 @@
           "Enum": 0
         },
         "ScriptGuid": {
-          "String": "{C496137C-DC37-443F-8ACC-404A61B7E747}"
+          "String": "{89CA0DE5-9A53-4DA9-84BD-C8DA3735EF9B}"
         },
         "Source": {
           "String": ""
