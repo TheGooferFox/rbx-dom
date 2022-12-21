@@ -2,6 +2,7 @@ Add:
   # All of these BevelMesh properties are
   # functionally dead, but remained serialized
   # as of 2013 for niche backwards compatibility.
+
   BevelMesh:
     Bevel:
       Serialization:
@@ -26,6 +27,7 @@ Add:
 
   # LODX and LODY are similarly dead, but
   # are still serialized for some reason.
+  
   DataModelMesh:
     LODX:
       Serialization:

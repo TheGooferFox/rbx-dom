@@ -54,6 +54,13 @@ Add:
         Value: String
       Scriptability: None
 
+    CollisionGroupData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
     ExplicitAutoJoints:
       Serialization:
         Type: Serializes

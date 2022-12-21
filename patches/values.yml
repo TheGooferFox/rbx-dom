@@ -1,0 +1,41 @@
+Add:
+  BinaryStringValue:
+    Value:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+  CustomEvent:
+    PersistedCurrentValue:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Float32
+      Scriptability: None
+
+  DoubleConstrainedValue:
+    value:
+      AliasFor: Value
+      DataType:
+        Value: Float64
+      Scriptability: None
+  IntConstrainedValue:
+    value:
+      AliasFor: Value
+      DataType:
+        Value: Int64
+      Scriptability: None
+
+Change:
+  DoubleConstrainedValue:
+    Value:
+      Serialization:
+        Type: SerializesAs
+        As: value
+  IntConstrainedValue:
+    Value:
+      Serialization:
+        Type: SerializesAs
+        As: value
