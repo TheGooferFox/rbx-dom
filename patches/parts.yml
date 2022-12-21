@@ -34,6 +34,10 @@ Add:
       Scriptability: None
 
   MeshPart:
+    # MeshPart.MeshId can't be written to under normal circumstances.
+    # It instead has to be deferred through InsertService:CreateMeshPartAsync
+    MeshId:
+      Scriptability: Custom
     VertexCount:
       DataType:
         Value: Int32
