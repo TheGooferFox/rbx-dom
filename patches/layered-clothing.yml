@@ -1,0 +1,47 @@
+Add:
+  # The BaseWrap HSR properties are local-only,
+  # they get converted into an asset on publish.
+  BaseWrap:
+    HSRMeshIdData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: SharedString
+      Scriptability: None
+    
+    HSRData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: SharedString
+      Scriptability: None
+    
+    TemporaryCageMeshId:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Content
+      Scriptability: None
+  
+  WrapLayer:
+    TemporaryReferenceId:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Content
+      Scriptability: None
+
+  HiddenSurfaceRemovalAsset:
+    HSRData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    HSRMeshIdData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None

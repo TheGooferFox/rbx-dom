@@ -1,0 +1,18 @@
+Add:
+  LuaSourceContainer:
+    ScriptGuid:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+  
+  # This serialization seems unintentional since
+  # MetaBreakpointContext is a runtime object?
+  MetaBreakpointContext:
+    ContextDataInternal:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None

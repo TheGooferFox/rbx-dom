@@ -1,0 +1,43 @@
+Add:
+  Humanoid:
+    Health_XML:
+      AliasFor: Health
+      DataType:
+        Value: Float32
+      Scriptability: None
+
+    InternalHeadScale:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Float32
+      Scriptability: None
+
+    InternalBodyScale:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Vector3
+      Scriptability: None
+
+  HumanoidDescription:
+    EquippedEmotesDataInternal:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+
+    EmotesDataInternal:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+
+Change:
+  Humanoid:
+    Health:
+      Serialization:
+        Type: SerializesAs
+        As: Health_XML

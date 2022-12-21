@@ -1,11 +1,33 @@
 Add:
   Model:
+    ModelMeshData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: SharedString
+      Scriptability: None
+    
+    ModelMeshCFrame:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: CFrame
+      Scriptability: None
+    
+    ModelMeshSize:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Vector3
+      Scriptability: None
+    
     NeedsPivotMigration:
       Serialization:
         Type: Serializes
       DataType:
         Value: Bool
       Scriptability: None
+    
     WorldPivotData:
       DataType:
         Value: OptionalCFrame

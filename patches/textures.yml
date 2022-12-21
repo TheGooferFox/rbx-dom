@@ -1,0 +1,16 @@
+Add:
+  MaterialVariant:
+    TexturePack:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Content
+      Scriptability: None
+  TerrainDetail:
+    TexturePack:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Content
+      Scriptability: None
+  

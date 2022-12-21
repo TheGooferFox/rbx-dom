@@ -1,10 +1,60 @@
 Add:
   PartOperation:
-    # Solid model data is silently uploaded to Roblox.com and a refernce is
+    # Solid model data is silently uploaded to Roblox.com and a reference is
     # stored here, in AssetId.
     AssetId:
       DataType:
         Value: Content
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+
+    ChildData:
+      DataType:
+        Value: BinaryString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+    ChildData2:
+      DataType:
+        Value: SharedString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+
+    MeshData:
+      DataType:
+        Value: BinaryString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+    MeshData2:
+      DataType:
+        Value: SharedString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+
+    # Weird hacked-in overload for FormFactorPart.FormFactor
+    # Was intended to prevent the property from being written or shown.
+    # FormFactor is obsolete so this doesn't really need to exist on the engine side anymore.
+    FormFactor:
+      DataType:
+        Enum: FormFactor
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+  
+  PartOperationAsset:
+    ChildData:
+      DataType:
+        Value: BinaryString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+    MeshData:
+      DataType:
+        Value: BinaryString
       Serialization:
         Type: Serializes
       Scriptability: None

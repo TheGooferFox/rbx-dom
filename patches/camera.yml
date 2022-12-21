@@ -1,3 +1,18 @@
+Add:
+  ViewportFrame:
+    CameraFieldOfView:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Float32
+      Scriptability: None
+    CameraCFrame:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: CFrame
+      Scriptability: None
+
 Change:
   Camera:
     CoordinateFrame:

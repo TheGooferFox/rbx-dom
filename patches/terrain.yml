@@ -1,0 +1,79 @@
+Add:
+  Terrain:
+    AcquisitionMethod:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Enum: TerrainAcquisitionMethod
+      Scriptability: None
+    
+    # Legacy Voxel (V1)
+    ClusterGrid:
+      Serialization:
+        Type: DoesNotSerialize
+      DataType:
+        Value: String
+      Scriptability: None
+
+    # Legacy Voxel (V2)
+    ClusterGridV2:
+      Serialization:
+        Type: DoesNotSerialize
+      DataType:
+        Value: String
+      Scriptability: None
+    
+    # Legacy Voxel (V3)
+    ClusterGridV3:
+      Serialization:
+        Type: DoesNotSerialize
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    # Smooth Terrain (Occupancy/Materials)
+    SmoothGrid:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    # Smooth Terrain (Physics)
+    PhysicsGrid:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+  
+  TerrainRegion:
+    ExtentsMin:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Vector3int16
+      Scriptability: None
+    
+    ExtentsMax:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Vector3int16
+      Scriptability: None
+    
+    # Legacy Voxel (V3)
+    GridV3:
+      Serialization:
+        Type: DoesNotSerialize
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    # Smooth Terrain
+    SmoothGrid:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None

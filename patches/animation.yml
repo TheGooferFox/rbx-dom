@@ -1,0 +1,102 @@
+Add:
+  AnimationRigData:
+    name:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    label:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    parent:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    weight:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    transform:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    facsControl:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    preTransform:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    postTransform:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    articulatedJoint:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    endEffectorRotationConstraint:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+    endEffectorTranslationConstraint:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+  FloatCurve:
+    ValuesAndTimes:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+  MarkerCurve:
+    ValuesAndTimes:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None
+
+  RotationCurve:
+    ValuesAndTimes:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: BinaryString
+      Scriptability: None

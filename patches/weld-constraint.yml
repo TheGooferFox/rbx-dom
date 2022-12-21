@@ -10,6 +10,18 @@ Add:
       DataType:
         Value: Ref
       Scriptability: None
+    State:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Int32
+      Scriptability: None
+    CFrame0:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: CFrame
+      Scriptability: None
 
 Change:
   WeldConstraint:

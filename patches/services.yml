@@ -1,0 +1,91 @@
+Add:
+  FunctionalTest:
+    HasMigratedSettingsToTestService:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Bool
+      Scriptability: None
+
+  MaterialService:
+    Use2022MaterialsXml:
+      AliasFor: Use2022Materials
+      DataType:
+        Value: Bool
+      Scriptability: None
+
+  StudioData:
+    CommitInflightPlaceVersion:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Int32
+      Scriptability: None
+    
+    CommitInflightAuthorId:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Int32
+      Scriptability: None
+    
+    CommitInflightGuid:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+  
+  UnvalidatedAssetService:
+    CachedData:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+
+  Workspace:
+    # Collision groups in a place are serialized as a string that looks like:
+    # Default^0^1
+    CollisionGroups:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+
+    ExplicitAutoJoints:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Bool
+      Scriptability: None
+
+    TerrainWeldsFixed:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: Bool
+      Scriptability: None
+
+Change:
+  MaterialService:
+    Use2022Materials:
+      Serialization:
+        Type: SerializesAs
+        As: Use2022MaterialsXml
+
+  Players:
+    MaxPlayers:
+      Serialization:
+        Type: SerializesAs
+        As: MaxPlayersInternal
+    MaxPlayersInternal:
+      AliasFor: MaxPlayers
+
+    PreferredPlayers:
+      Serialization:
+        Type: SerializesAs
+        As: PreferredPlayersInternal
+    PreferredPlayersInternal:
+      AliasFor: PreferredPlayers

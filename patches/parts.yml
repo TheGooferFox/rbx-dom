@@ -13,6 +13,13 @@ Add:
         Value: String
       Scriptability: Custom
 
+    MaterialVariantSerialized:
+      Serialization:
+        Type: Serializes
+      DataType:
+        Value: String
+      Scriptability: None
+
     size:
       AliasFor: Size
       DataType:
@@ -26,11 +33,54 @@ Add:
         Enum: FormFactor
       Scriptability: None
 
+  MeshPart:
+    VertexCount:
+      DataType:
+        Value: Int32
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+
   Part:
     shape:
       AliasFor: Shape
       DataType:
         Enum: PartType
+      Scriptability: None
+
+  TriangleMeshPart:
+    PhysicsData:
+      DataType:
+        Value: BinaryString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+    PhysicalConfigData:
+      DataType:
+        Value: SharedString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+    
+    InitialSize:
+      DataType:
+        Value: Vector3
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+    
+    LODData:
+      DataType:
+        Value: BinaryString
+      Serialization:
+        Type: Serializes
+      Scriptability: None
+
+  TrussPart:
+    style:
+      AliasFor: Style
+      DataType:
+        Enum: Style
       Scriptability: None
 
 Change:
@@ -45,6 +95,9 @@ Change:
       Serialization:
         Type: SerializesAs
         As: Color3uint8
+
+    MaterialVariant:
+      AliasFor: MaterialVariantSerialized
 
     Size:
       Serialization:
@@ -64,3 +117,9 @@ Change:
       Serialization:
         Type: SerializesAs
         As: shape
+
+  TrussPart:
+    Style:
+      Serialization:
+        Type: SerializesAs
+        As: style

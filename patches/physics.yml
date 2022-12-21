@@ -1,6 +1,18 @@
-# Body Movers are old objects that have a number of deprecated aliases.
+Add:
+  BallSocketConstraint:
+    MaxFrictionTorqueXml:
+      AliasFor: MaxFrictionTorque
+      DataType:
+        Value: Float32
+      Scriptability: None
 
 Change:
+  BallSocketConstraint:
+    MaxFrictionTorque:
+      Serialization:
+        Type: SerializesAs
+        As: MaxFrictionTorqueXml
+
   BodyAngularVelocity:
     angularvelocity:
       AliasFor: AngularVelocity
