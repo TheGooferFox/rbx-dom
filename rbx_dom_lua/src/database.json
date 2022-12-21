@@ -1,9 +1,9 @@
 {
   "Version": [
     0,
-    547,
-    0,
-    5470549
+    554,
+    1,
+    5540506
   ],
   "Classes": {
     "Accessory": {
@@ -195,19 +195,82 @@
         "LevelOfDetail": {
           "Enum": 0
         },
+        "ModelMeshCFrame": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "ModelMeshSize": {
+          "Vector3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "ModelStreamingMode": {
+          "Enum": 0
+        },
+        "NeedsPivotMigration": {
+          "Bool": false
+        },
         "SourceAssetId": {
           "Int64": -1
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "WorldPivotData": {
+          "OptionalCFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
         }
       }
     },
     "AdGui": {
       "Name": "AdGui",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "SurfaceGuiBase",
       "Properties": {
         "AdShape": {
@@ -228,9 +291,7 @@
     },
     "AdPortal": {
       "Name": "AdPortal",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "Instance",
       "Properties": {
         "PortalInvalidReason": {
@@ -318,13 +379,37 @@
     },
     "AirController": {
       "Name": "AirController",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "ControllerBase",
       "Properties": {
         "CancelAirMomentum": {
           "Name": "CancelAirMomentum",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "MaintainAngularMomentum": {
+          "Name": "MaintainAngularMomentum",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "MaintainLinearMomentum": {
+          "Name": "MaintainLinearMomentum",
           "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "Bool"
@@ -396,8 +481,14 @@
         "CancelAirMomentum": {
           "Bool": true
         },
+        "MaintainAngularMomentum": {
+          "Bool": true
+        },
+        "MaintainLinearMomentum": {
+          "Bool": true
+        },
         "MoveMaxForce": {
-          "Float32": 10000.0
+          "Float32": 1000.0
         },
         "MoveSpeedFactor": {
           "Float32": 1.0
@@ -502,7 +593,9 @@
           "DataType": {
             "Value": "Vector3"
           },
-          "Tags": [],
+          "Tags": [
+            "NotReplicated"
+          ],
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
@@ -567,7 +660,9 @@
           "DataType": {
             "Value": "Vector3"
           },
-          "Tags": [],
+          "Tags": [
+            "NotReplicated"
+          ],
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
@@ -817,6 +912,7 @@
     "AnalyticsService": {
       "Name": "AnalyticsService",
       "Tags": [
+        "Deprecated",
         "Service"
       ],
       "Superclass": "Instance",
@@ -1028,6 +1124,104 @@
       "Properties": {},
       "DefaultProperties": {}
     },
+    "AnimationConstraint": {
+      "Name": "AnimationConstraint",
+      "Tags": [],
+      "Superclass": "Constraint",
+      "Properties": {
+        "MaxForce": {
+          "Name": "MaxForce",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "MaxTorque": {
+          "Name": "MaxTorque",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "Transform": {
+          "Name": "Transform",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
+      "DefaultProperties": {
+        "Attributes": {
+          "BinaryString": ""
+        },
+        "Color": {
+          "Int32": 23
+        },
+        "Enabled": {
+          "Bool": true
+        },
+        "MaxForce": {
+          "Float32": 10000.0
+        },
+        "MaxTorque": {
+          "Float32": 10000.0
+        },
+        "SourceAssetId": {
+          "Int64": -1
+        },
+        "Tags": {
+          "BinaryString": ""
+        },
+        "Transform": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "Visible": {
+          "Bool": false
+        }
+      }
+    },
     "AnimationController": {
       "Name": "AnimationController",
       "Tags": [],
@@ -1080,7 +1274,151 @@
       "Name": "AnimationRigData",
       "Tags": [],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "articulatedJoint": {
+          "Name": "articulatedJoint",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "endEffectorRotationConstraint": {
+          "Name": "endEffectorRotationConstraint",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "endEffectorTranslationConstraint": {
+          "Name": "endEffectorTranslationConstraint",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "facsControl": {
+          "Name": "facsControl",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "label": {
+          "Name": "label",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "name": {
+          "Name": "name",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "parent": {
+          "Name": "parent",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "postTransform": {
+          "Name": "postTransform",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "preTransform": {
+          "Name": "preTransform",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "transform": {
+          "Name": "transform",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "weight": {
+          "Name": "weight",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
@@ -1090,6 +1428,39 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "articulatedJoint": {
+          "BinaryString": "AQAAAAAAAAA="
+        },
+        "endEffectorRotationConstraint": {
+          "BinaryString": "AQAAAAAAAAA="
+        },
+        "endEffectorTranslationConstraint": {
+          "BinaryString": "AQAAAAAAAAA="
+        },
+        "facsControl": {
+          "BinaryString": "AQAAAAAAAAA="
+        },
+        "label": {
+          "BinaryString": "AQAAAAEAAAAAAAAA"
+        },
+        "name": {
+          "BinaryString": "AQAAAAEAAAAAAAAA"
+        },
+        "parent": {
+          "BinaryString": "AQAAAAEAAAAAAA=="
+        },
+        "postTransform": {
+          "BinaryString": "AQAAAAEAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAA="
+        },
+        "preTransform": {
+          "BinaryString": "AQAAAAEAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAA="
+        },
+        "transform": {
+          "BinaryString": "AQAAAAEAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAA="
+        },
+        "weight": {
+          "BinaryString": "AQAAAAAAAAA="
         }
       }
     },
@@ -1461,7 +1832,47 @@
         "Service"
       ],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "Interface": {
+          "Name": "Interface",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "Port": {
+          "Name": "Port",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "StartServer": {
+          "Name": "StartServer",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {}
     },
     "AssetImportService": {
@@ -1494,6 +1905,56 @@
       ],
       "Superclass": "Instance",
       "Properties": {},
+      "DefaultProperties": {}
+    },
+    "AssetPatchSettings": {
+      "Name": "AssetPatchSettings",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated"
+      ],
+      "Superclass": "Instance",
+      "Properties": {
+        "ContentId": {
+          "Name": "ContentId",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "OutputPath": {
+          "Name": "OutputPath",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "PatchId": {
+          "Name": "PatchId",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {}
     },
     "AssetService": {
@@ -1989,7 +2450,22 @@
           "Tags": [],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": {
+                "SerializesAs": "MaxFrictionTorqueXml"
+              }
+            }
+          }
+        },
+        "MaxFrictionTorqueXml": {
+          "Name": "MaxFrictionTorqueXml",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Alias": {
+              "AliasFor": "MaxFrictionTorque"
             }
           }
         },
@@ -2085,6 +2561,9 @@
         "LimitsEnabled": {
           "Bool": false
         },
+        "MaxFrictionTorque": {
+          "Float32": 0.0
+        },
         "Radius": {
           "Float32": 0.15
         },
@@ -2117,7 +2596,6 @@
     "BasePart": {
       "Name": "BasePart",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "PVInstance",
@@ -2550,6 +3028,38 @@
             }
           }
         },
+        "ExtentsCFrame": {
+          "Name": "ExtentsCFrame",
+          "Scriptability": "Read",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [
+            "NotReplicated",
+            "ReadOnly"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "ExtentsSize": {
+          "Name": "ExtentsSize",
+          "Scriptability": "Read",
+          "DataType": {
+            "Value": "Vector3"
+          },
+          "Tags": [
+            "NotReplicated",
+            "ReadOnly"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
         "Friction": {
           "Name": "Friction",
           "Scriptability": "ReadWrite",
@@ -2770,8 +3280,21 @@
             "NotReplicated"
           ],
           "Kind": {
+            "Alias": {
+              "AliasFor": "MaterialVariantSerialized"
+            }
+          }
+        },
+        "MaterialVariantSerialized": {
+          "Name": "MaterialVariantSerialized",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": "Serializes"
             }
           }
         },
@@ -3278,6 +3801,32 @@
             }
           }
         },
+        "HSRData": {
+          "Name": "HSRData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "SharedString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "HSRMeshIdData": {
+          "Name": "HSRMeshIdData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "SharedString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "ImportOrigin": {
           "Name": "ImportOrigin",
           "Scriptability": "ReadWrite",
@@ -3304,6 +3853,19 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "TemporaryCageMeshId": {
+          "Name": "TemporaryCageMeshId",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Content"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         }
@@ -3662,11 +4224,50 @@
       "Name": "BevelMesh",
       "Tags": [
         "Deprecated",
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "DataModelMesh",
-      "Properties": {},
+      "Properties": {
+        "Bevel": {
+          "Name": "Bevel",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "Bevel Roundness": {
+          "Name": "Bevel Roundness",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "Bulge": {
+          "Name": "Bulge",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {}
     },
     "BillboardGui": {
@@ -4028,7 +4629,21 @@
       "Name": "BinaryStringValue",
       "Tags": [],
       "Superclass": "ValueBase",
-      "Properties": {},
+      "Properties": {
+        "Value": {
+          "Name": "Value",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
@@ -4037,6 +4652,9 @@
           "Int64": -1
         },
         "Tags": {
+          "BinaryString": ""
+        },
+        "Value": {
           "BinaryString": ""
         }
       }
@@ -4077,12 +4695,29 @@
     },
     "BlockMesh": {
       "Name": "BlockMesh",
-      "Tags": [],
+      "Tags": [
+        "Deprecated"
+      ],
       "Superclass": "BevelMesh",
       "Properties": {},
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "Bevel": {
+          "Float32": 0.0
+        },
+        "Bevel Roundness": {
+          "Float32": 0.0
+        },
+        "Bulge": {
+          "Float32": 0.0
+        },
+        "LODX": {
+          "Enum": 2
+        },
+        "LODY": {
+          "Enum": 2
         },
         "Offset": {
           "Vector3": [
@@ -5081,23 +5716,6 @@
       "Tags": [],
       "Superclass": "Attachment",
       "Properties": {
-        "IsCFrameDriven": {
-          "Name": "IsCFrameDriven",
-          "Scriptability": "None",
-          "DataType": {
-            "Value": "Bool"
-          },
-          "Tags": [
-            "Hidden",
-            "NotReplicated",
-            "ReadOnly"
-          ],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "DoesNotSerialize"
-            }
-          }
-        },
         "Transform": {
           "Name": "Transform",
           "Scriptability": "ReadWrite",
@@ -5120,6 +5738,7 @@
             "Value": "CFrame"
           },
           "Tags": [
+            "Hidden",
             "NotReplicated",
             "ReadOnly"
           ],
@@ -5568,6 +6187,19 @@
             }
           }
         },
+        "BackgroundTransparency": {
+          "Name": "BackgroundTransparency",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "BubbleDuration": {
           "Name": "BubbleDuration",
           "Scriptability": "ReadWrite",
@@ -5613,7 +6245,9 @@
           "DataType": {
             "Enum": "Font"
           },
-          "Tags": [],
+          "Tags": [
+            "Hidden"
+          ],
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
@@ -5712,6 +6346,9 @@
             0.98039216,
             0.98039216
           ]
+        },
+        "BackgroundTransparency": {
+          "Float64": 0.1
         },
         "BubbleDuration": {
           "Float32": 15.0
@@ -6588,11 +7225,50 @@
             }
           }
         },
+        "BackgroundColor3": {
+          "Name": "BackgroundColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "BackgroundTransparency": {
+          "Name": "BackgroundTransparency",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "Enabled": {
           "Name": "Enabled",
           "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "PlaceholderColor3": {
+          "Name": "PlaceholderColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
           },
           "Tags": [],
           "Kind": {
@@ -6613,20 +7289,109 @@
               "Serialization": "Serializes"
             }
           }
+        },
+        "TextColor3": {
+          "Name": "TextColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextSize": {
+          "Name": "TextSize",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Int64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextStrokeColor3": {
+          "Name": "TextStrokeColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextStrokeTransparency": {
+          "Name": "TextStrokeTransparency",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
         },
+        "BackgroundColor3": {
+          "Color3": [
+            0.09803922,
+            0.105882354,
+            0.11372549
+          ]
+        },
+        "BackgroundTransparency": {
+          "Float64": 0.2
+        },
         "Enabled": {
           "Bool": true
+        },
+        "PlaceholderColor3": {
+          "Color3": [
+            0.69803923,
+            0.69803923,
+            0.69803923
+          ]
         },
         "SourceAssetId": {
           "Int64": -1
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "TextColor3": {
+          "Color3": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TextSize": {
+          "Int64": 14
+        },
+        "TextStrokeColor3": {
+          "Color3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TextStrokeTransparency": {
+          "Float64": 0.5
         }
       }
     },
@@ -6699,11 +7464,50 @@
             }
           }
         },
+        "BackgroundColor3": {
+          "Name": "BackgroundColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "BackgroundTransparency": {
+          "Name": "BackgroundTransparency",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "Enabled": {
           "Name": "Enabled",
           "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "HeightScale": {
+          "Name": "HeightScale",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float32"
           },
           "Tags": [],
           "Kind": {
@@ -6718,12 +7522,62 @@
           "DataType": {
             "Enum": "HorizontalAlignment"
           },
-          "Tags": [
-            "NotReplicated"
-          ],
+          "Tags": [],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextColor3": {
+          "Name": "TextColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextSize": {
+          "Name": "TextSize",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Int64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextStrokeColor3": {
+          "Name": "TextStrokeColor3",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "TextStrokeTransparency": {
+          "Name": "TextStrokeTransparency",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         },
@@ -6733,12 +7587,23 @@
           "DataType": {
             "Enum": "VerticalAlignment"
           },
-          "Tags": [
-            "NotReplicated"
-          ],
+          "Tags": [],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "WidthScale": {
+          "Name": "WidthScale",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         }
@@ -6747,14 +7612,56 @@
         "Attributes": {
           "BinaryString": ""
         },
+        "BackgroundColor3": {
+          "Color3": [
+            0.09803922,
+            0.105882354,
+            0.11372549
+          ]
+        },
+        "BackgroundTransparency": {
+          "Float64": 0.3
+        },
         "Enabled": {
           "Bool": true
+        },
+        "HeightScale": {
+          "Float32": 1.0
+        },
+        "HorizontalAlignment": {
+          "Enum": 1
         },
         "SourceAssetId": {
           "Int64": -1
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "TextColor3": {
+          "Color3": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TextSize": {
+          "Int64": 14
+        },
+        "TextStrokeColor3": {
+          "Color3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TextStrokeTransparency": {
+          "Float64": 0.5
+        },
+        "VerticalAlignment": {
+          "Enum": 1
+        },
+        "WidthScale": {
+          "Float32": 1.0
         }
       }
     },
@@ -6892,9 +7799,7 @@
     },
     "ClimbController": {
       "Name": "ClimbController",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "ControllerBase",
       "Properties": {
         "AccelerationTime": {
@@ -7869,9 +8774,7 @@
     },
     "ControllerManager": {
       "Name": "ControllerManager",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "Instance",
       "Properties": {
         "ActiveController": {
@@ -7926,22 +8829,6 @@
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
-            }
-          }
-        },
-        "HipHeight": {
-          "Name": "HipHeight",
-          "Scriptability": "ReadWrite",
-          "DataType": {
-            "Value": "Float32"
-          },
-          "Tags": [
-            "Hidden",
-            "NotReplicated"
-          ],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "DoesNotSerialize"
             }
           }
         },
@@ -8084,6 +8971,16 @@
       "Properties": {},
       "DefaultProperties": {}
     },
+    "CoreScriptBuilder": {
+      "Name": "CoreScriptBuilder",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated"
+      ],
+      "Superclass": "ScriptBuilder",
+      "Properties": {},
+      "DefaultProperties": {}
+    },
     "CoreScriptSyncService": {
       "Name": "CoreScriptSyncService",
       "Tags": [
@@ -8218,6 +9115,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -8346,10 +9246,27 @@
         "Deprecated"
       ],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "PersistedCurrentValue": {
+          "Name": "PersistedCurrentValue",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "PersistedCurrentValue": {
+          "Float32": 0.0
         },
         "SourceAssetId": {
           "Int64": -1
@@ -8548,6 +9465,21 @@
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "Bevel": {
+          "Float32": 0.0
+        },
+        "Bevel Roundness": {
+          "Float32": 0.0
+        },
+        "Bulge": {
+          "Float32": 0.0
+        },
+        "LODX": {
+          "Enum": 2
+        },
+        "LODY": {
+          "Enum": 2
         },
         "Offset": {
           "Vector3": [
@@ -9177,11 +10109,36 @@
     "DataModelMesh": {
       "Name": "DataModelMesh",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
       "Properties": {
+        "LODX": {
+          "Name": "LODX",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "LevelOfDetailSetting"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "LODY": {
+          "Name": "LODY",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "LevelOfDetailSetting"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "Offset": {
           "Name": "Offset",
           "Scriptability": "ReadWrite",
@@ -9450,7 +10407,24 @@
         "NotReplicated"
       ],
       "Superclass": "Pages",
-      "Properties": {},
+      "Properties": {
+        "Cursor": {
+          "Name": "Cursor",
+          "Scriptability": "Read",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [
+            "NotReplicated",
+            "ReadOnly"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        }
+      },
       "DefaultProperties": {}
     },
     "DataStoreListingPages": {
@@ -9460,7 +10434,24 @@
         "NotReplicated"
       ],
       "Superclass": "Pages",
-      "Properties": {},
+      "Properties": {
+        "Cursor": {
+          "Name": "Cursor",
+          "Scriptability": "Read",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [
+            "NotReplicated",
+            "ReadOnly"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        }
+      },
       "DefaultProperties": {}
     },
     "DataStoreObjectVersionInfo": {
@@ -9675,7 +10666,6 @@
     "DebugSettings": {
       "Name": "DebugSettings",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable",
         "Settings"
       ],
@@ -10902,7 +11892,22 @@
           ],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": {
+                "SerializesAs": "value"
+              }
+            }
+          }
+        },
+        "value": {
+          "Name": "value",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Alias": {
+              "AliasFor": "Value"
             }
           }
         }
@@ -10922,6 +11927,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "Value": {
+          "Float64": 0.0
         }
       }
     },
@@ -11250,6 +12258,40 @@
       },
       "DefaultProperties": {}
     },
+    "DynamicTextureAlpha": {
+      "Name": "DynamicTextureAlpha",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated"
+      ],
+      "Superclass": "Instance",
+      "Properties": {},
+      "DefaultProperties": {}
+    },
+    "DynamicTextureLayerAlpha": {
+      "Name": "DynamicTextureLayerAlpha",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated"
+      ],
+      "Superclass": "Instance",
+      "Properties": {
+        "ZIndex": {
+          "Name": "ZIndex",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
+      "DefaultProperties": {}
+    },
     "EchoSoundEffect": {
       "Name": "EchoSoundEffect",
       "Tags": [],
@@ -11464,6 +12506,16 @@
       "Properties": {},
       "DefaultProperties": {}
     },
+    "ExperienceAuthService": {
+      "Name": "ExperienceAuthService",
+      "Tags": [
+        "NotCreatable",
+        "Service"
+      ],
+      "Superclass": "Instance",
+      "Properties": {},
+      "DefaultProperties": {}
+    },
     "ExperienceInviteOptions": {
       "Name": "ExperienceInviteOptions",
       "Tags": [
@@ -11475,7 +12527,7 @@
           "Name": "InviteMessageId",
           "Scriptability": "ReadWrite",
           "DataType": {
-            "Value": "Int32"
+            "Value": "String"
           },
           "Tags": [],
           "Kind": {
@@ -11488,7 +12540,7 @@
           "Name": "InviteUser",
           "Scriptability": "ReadWrite",
           "DataType": {
-            "Value": "Int32"
+            "Value": "Int64"
           },
           "Tags": [],
           "Kind": {
@@ -12491,7 +13543,6 @@
     "FaceInstance": {
       "Name": "FaceInstance",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -12582,6 +13633,45 @@
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "SourceAssetId": {
+          "Int64": -1
+        },
+        "Tags": {
+          "BinaryString": ""
+        }
+      }
+    },
+    "FacialAnimationStreamingServiceV2": {
+      "Name": "FacialAnimationStreamingServiceV2",
+      "Tags": [
+        "NotCreatable",
+        "Service"
+      ],
+      "Superclass": "Instance",
+      "Properties": {
+        "ServiceState": {
+          "Name": "ServiceState",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [
+            "Hidden"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
+      "DefaultProperties": {
+        "Attributes": {
+          "BinaryString": ""
+        },
+        "ServiceState": {
+          "Int32": 0
         },
         "SourceAssetId": {
           "Int64": -1
@@ -12716,6 +13806,12 @@
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "LODX": {
+          "Enum": 2
+        },
+        "LODY": {
+          "Enum": 2
         },
         "MeshId": {
           "Content": ""
@@ -13146,6 +14242,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -13243,6 +14342,7 @@
     "FlagStandService": {
       "Name": "FlagStandService",
       "Tags": [
+        "Deprecated",
         "NotCreatable",
         "Service"
       ],
@@ -13342,6 +14442,19 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "ValuesAndTimes": {
+          "Name": "ValuesAndTimes",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -13353,6 +14466,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "ValuesAndTimes": {
+          "BinaryString": "AQAAAAAAAAAAAAAAAAAWRQAAAAA="
         }
       }
     },
@@ -13802,9 +14918,7 @@
     },
     "FunctionalTest": {
       "Name": "FunctionalTest",
-      "Tags": [
-        "Deprecated"
-      ],
+      "Tags": [],
       "Superclass": "Instance",
       "Properties": {
         "Description": {
@@ -13812,6 +14926,19 @@
           "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "HasMigratedSettingsToTestService": {
+          "Name": "HasMigratedSettingsToTestService",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Bool"
           },
           "Tags": [],
           "Kind": {
@@ -13827,6 +14954,9 @@
         },
         "Description": {
           "String": "?"
+        },
+        "HasMigratedSettingsToTestService": {
+          "Bool": false
         },
         "SourceAssetId": {
           "Int64": -1
@@ -13859,7 +14989,6 @@
     "GameSettings": {
       "Name": "GameSettings",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable",
         "Settings"
       ],
@@ -14012,7 +15141,6 @@
     "GlobalSettings": {
       "Name": "GlobalSettings",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "GenericSettings",
@@ -14186,9 +15314,7 @@
     },
     "GroundController": {
       "Name": "GroundController",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "ControllerBase",
       "Properties": {
         "AccelerationLean": {
@@ -14292,22 +15418,6 @@
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
-            }
-          }
-        },
-        "MaxSlopeAngle": {
-          "Name": "MaxSlopeAngle",
-          "Scriptability": "ReadWrite",
-          "DataType": {
-            "Value": "Float32"
-          },
-          "Tags": [
-            "Hidden",
-            "NotReplicated"
-          ],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "DoesNotSerialize"
             }
           }
         },
@@ -14425,7 +15535,6 @@
     "GuiBase2d": {
       "Name": "GuiBase2d",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "GuiBase",
@@ -14726,7 +15835,6 @@
     "GuiButton": {
       "Name": "GuiButton",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "GuiObject",
@@ -14809,17 +15917,23 @@
         "AutoLocalize": {
           "Bool": true
         },
+        "ClipToDeviceSafeArea": {
+          "Bool": true
+        },
         "DisplayOrder": {
           "Int32": 0
         },
         "Enabled": {
           "Bool": true
         },
-        "IgnoreGuiInset": {
-          "Bool": false
-        },
         "ResetOnSpawn": {
           "Bool": true
+        },
+        "SafeAreaCompatibility": {
+          "Enum": 1
+        },
+        "ScreenInsets": {
+          "Enum": 2
         },
         "SelectionBehaviorDown": {
           "Enum": 0
@@ -14850,7 +15964,6 @@
     "GuiObject": {
       "Name": "GuiObject",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "GuiBase2d",
@@ -15645,9 +16758,42 @@
       "Name": "HiddenSurfaceRemovalAsset",
       "Tags": [],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "HSRData": {
+          "Name": "HSRData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "HSRMeshIdData": {
+          "Name": "HSRMeshIdData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
+          "BinaryString": ""
+        },
+        "HSRData": {
+          "BinaryString": ""
+        },
+        "HSRMeshIdData": {
           "BinaryString": ""
         },
         "SourceAssetId": {
@@ -16076,9 +17222,7 @@
     },
     "Hint": {
       "Name": "Hint",
-      "Tags": [
-        "Deprecated"
-      ],
+      "Tags": [],
       "Superclass": "Message",
       "Properties": {},
       "DefaultProperties": {
@@ -16098,9 +17242,7 @@
     },
     "Hole": {
       "Name": "Hole",
-      "Tags": [
-        "Deprecated"
-      ],
+      "Tags": [],
       "Superclass": "Feature",
       "Properties": {},
       "DefaultProperties": {
@@ -16130,7 +17272,6 @@
     "Hopper": {
       "Name": "Hopper",
       "Tags": [
-        "Deprecated",
         "NotCreatable",
         "Service"
       ],
@@ -16366,9 +17507,7 @@
           "DataType": {
             "Value": "Bool"
           },
-          "Tags": [
-            "NotBrowsable"
-          ],
+          "Tags": [],
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
@@ -16402,7 +17541,9 @@
           ],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": {
+                "SerializesAs": "Health_XML"
+              }
             }
           }
         },
@@ -16432,9 +17573,48 @@
             }
           }
         },
+        "Health_XML": {
+          "Name": "Health_XML",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Alias": {
+              "AliasFor": "Health"
+            }
+          }
+        },
         "HipHeight": {
           "Name": "HipHeight",
           "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "InternalBodyScale": {
+          "Name": "InternalBodyScale",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Vector3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "InternalHeadScale": {
+          "Name": "InternalHeadScale",
+          "Scriptability": "None",
           "DataType": {
             "Value": "Float32"
           },
@@ -16799,6 +17979,9 @@
         "EvaluateStateMachine": {
           "Bool": true
         },
+        "Health": {
+          "Float32": 100.0
+        },
         "HealthDisplayDistance": {
           "Float32": 100.0
         },
@@ -16807,6 +17990,16 @@
         },
         "HipHeight": {
           "Float32": 0.0
+        },
+        "InternalBodyScale": {
+          "Vector3": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "InternalHeadScale": {
+          "Float32": 1.0
         },
         "JumpHeight": {
           "Float32": 7.2
@@ -16927,6 +18120,32 @@
           "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "EmotesDataInternal": {
+          "Name": "EmotesDataInternal",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "EquippedEmotesDataInternal": {
+          "Name": "EquippedEmotesDataInternal",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
           },
           "Tags": [],
           "Kind": {
@@ -17412,6 +18631,12 @@
         "DepthScale": {
           "Float32": 1.0
         },
+        "EmotesDataInternal": {
+          "String": ""
+        },
+        "EquippedEmotesDataInternal": {
+          "String": ""
+        },
         "Face": {
           "Int64": 0
         },
@@ -17548,9 +18773,7 @@
     },
     "IKControl": {
       "Name": "IKControl",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "Instance",
       "Properties": {
         "ChainRoot": {
@@ -17592,11 +18815,37 @@
             }
           }
         },
+        "EndEffectorOffset": {
+          "Name": "EndEffectorOffset",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "Offset": {
           "Name": "Offset",
           "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "CFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "Pole": {
+          "Name": "Pole",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Ref"
           },
           "Tags": [],
           "Kind": {
@@ -17664,6 +18913,32 @@
         },
         "Enabled": {
           "Bool": true
+        },
+        "EndEffectorOffset": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
         },
         "Offset": {
           "CFrame": {
@@ -19407,7 +20682,6 @@
           },
           "Tags": [
             "Deprecated",
-            "NotBrowsable",
             "NotReplicated"
           ],
           "Kind": {
@@ -19438,7 +20712,6 @@
     "Instance": {
       "Name": "Instance",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": null,
@@ -19712,7 +20985,22 @@
           ],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": {
+                "SerializesAs": "value"
+              }
+            }
+          }
+        },
+        "value": {
+          "Name": "value",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Int64"
+          },
+          "Tags": [],
+          "Kind": {
+            "Alias": {
+              "AliasFor": "Value"
             }
           }
         }
@@ -19732,6 +21020,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "Value": {
+          "Int64": 0
         }
       }
     },
@@ -20978,6 +22269,9 @@
         "RunContext": {
           "Enum": 0
         },
+        "ScriptGuid": {
+          "String": "{613709A0-1C76-42DE-B116-879512BF7F5B}"
+        },
         "Source": {
           "String": ""
         },
@@ -21297,7 +22591,6 @@
     "LuaSourceContainer": {
       "Name": "LuaSourceContainer",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -21314,6 +22607,19 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "ScriptGuid": {
+          "Name": "ScriptGuid",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         }
@@ -21529,6 +22835,19 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "ValuesAndTimes": {
+          "Name": "ValuesAndTimes",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -21540,6 +22859,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "ValuesAndTimes": {
+          "BinaryString": "AAAAAAEAAAAKAAAAAAAAFkUAAAAA"
         }
       }
     },
@@ -22022,7 +23344,22 @@
           ],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": {
+                "SerializesAs": "Use2022MaterialsXml"
+              }
+            }
+          }
+        },
+        "Use2022MaterialsXml": {
+          "Name": "Use2022MaterialsXml",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Alias": {
+              "AliasFor": "Use2022Materials"
             }
           }
         },
@@ -22157,6 +23494,9 @@
         "Tags": {
           "BinaryString": ""
         },
+        "Use2022Materials": {
+          "Bool": false
+        },
         "WoodName": {
           "String": "Wood"
         },
@@ -22273,6 +23613,19 @@
               "Serialization": "Serializes"
             }
           }
+        },
+        "TexturePack": {
+          "Name": "TexturePack",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Content"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -22308,6 +23661,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "TexturePack": {
+          "Content": ""
         }
       }
     },
@@ -22485,6 +23841,19 @@
               "Serialization": "Serializes"
             }
           }
+        },
+        "VertexCount": {
+          "Name": "VertexCount",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -22593,12 +23962,22 @@
         "HasSkinnedMesh": {
           "Bool": false
         },
+        "InitialSize": {
+          "Vector3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
         "JointOffset": {
           "Vector3": [
             0.0,
             0.0,
             0.0
           ]
+        },
+        "LODData": {
+          "BinaryString": ""
         },
         "LeftParamA": {
           "Float32": -0.5
@@ -22621,8 +24000,14 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "MeshId": {
           "Content": ""
+        },
+        "PhysicsData": {
+          "BinaryString": ""
         },
         "PivotOffset": {
           "CFrame": {
@@ -22715,14 +24100,15 @@
             0.0,
             0.0
           ]
+        },
+        "VertexCount": {
+          "Int32": 0
         }
       }
     },
     "Message": {
       "Name": "Message",
-      "Tags": [
-        "Deprecated"
-      ],
+      "Tags": [],
       "Superclass": "Instance",
       "Properties": {
         "Text": {
@@ -22979,10 +24365,27 @@
         "NotReplicated"
       ],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "ContextDataInternal": {
+          "Name": "ContextDataInternal",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "ContextDataInternal": {
+          "String": "0 1 2 "
         },
         "SourceAssetId": {
           "Int64": -1
@@ -23013,6 +24416,71 @@
           "Scriptability": "ReadWrite",
           "DataType": {
             "Enum": "ModelLevelOfDetail"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ModelMeshCFrame": {
+          "Name": "ModelMeshCFrame",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ModelMeshData": {
+          "Name": "ModelMeshData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "SharedString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ModelMeshSize": {
+          "Name": "ModelMeshSize",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Vector3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ModelStreamingMode": {
+          "Name": "ModelStreamingMode",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Enum": "ModelStreamingMode"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "NeedsPivotMigration": {
+          "Name": "NeedsPivotMigration",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Bool"
           },
           "Tags": [],
           "Kind": {
@@ -23080,6 +24548,19 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "WorldPivotData": {
+          "Name": "WorldPivotData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "OptionalCFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -23089,11 +24570,76 @@
         "LevelOfDetail": {
           "Enum": 0
         },
+        "ModelMeshCFrame": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "ModelMeshSize": {
+          "Vector3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "ModelStreamingMode": {
+          "Enum": 0
+        },
+        "NeedsPivotMigration": {
+          "Bool": false
+        },
         "SourceAssetId": {
           "Int64": -1
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "WorldPivotData": {
+          "OptionalCFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
         }
       }
     },
@@ -23135,6 +24681,9 @@
         },
         "LinkedSource": {
           "Content": ""
+        },
+        "ScriptGuid": {
+          "String": "{F903F813-F629-43BF-B7DD-00AA1C9CF8B6}"
         },
         "Source": {
           "String": ""
@@ -23758,6 +25307,9 @@
         "CastShadow": {
           "Bool": true
         },
+        "ChildData": {
+          "BinaryString": ""
+        },
         "CollisionGroup": {
           "String": "Default"
         },
@@ -23774,6 +25326,9 @@
         "CustomPhysicalProperties": {
           "PhysicalProperties": "Default"
         },
+        "FormFactor": {
+          "Enum": 3
+        },
         "FrontParamA": {
           "Float32": -0.5
         },
@@ -23785,6 +25340,16 @@
         },
         "FrontSurfaceInput": {
           "Enum": 0
+        },
+        "InitialSize": {
+          "Vector3": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "LODData": {
+          "BinaryString": ""
         },
         "LeftParamA": {
           "Float32": -0.5
@@ -23806,6 +25371,15 @@
         },
         "Material": {
           "Enum": 256
+        },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
+        "MeshData": {
+          "BinaryString": ""
+        },
+        "PhysicsData": {
+          "BinaryString": ""
         },
         "PivotOffset": {
           "CFrame": {
@@ -23918,7 +25492,6 @@
     "NetworkMarker": {
       "Name": "NetworkMarker",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -23928,7 +25501,6 @@
     "NetworkPeer": {
       "Name": "NetworkPeer",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -23959,7 +25531,6 @@
     "NetworkSettings": {
       "Name": "NetworkSettings",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable",
         "Service"
       ],
@@ -24427,11 +25998,26 @@
     "PVInstance": {
       "Name": "PVInstance",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
       "Properties": {
+        "Origin": {
+          "Name": "Origin",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [
+            "NotReplicated",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
         "Origin Orientation": {
           "Name": "Origin Orientation",
           "Scriptability": "None",
@@ -24453,6 +26039,22 @@
           "Scriptability": "None",
           "DataType": {
             "Value": "Vector3"
+          },
+          "Tags": [
+            "NotReplicated",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "Pivot Offset": {
+          "Name": "Pivot Offset",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "CFrame"
           },
           "Tags": [
             "NotReplicated",
@@ -24502,7 +26104,6 @@
     "PackageLink": {
       "Name": "PackageLink",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -24730,7 +26331,9 @@
     },
     "ParabolaAdornment": {
       "Name": "ParabolaAdornment",
-      "Tags": [],
+      "Tags": [
+        "Deprecated"
+      ],
       "Superclass": "PVAdornment",
       "Properties": {
         "A": {
@@ -24991,6 +26594,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -25115,6 +26721,71 @@
           "Scriptability": "None",
           "DataType": {
             "Value": "Content"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ChildData": {
+          "Name": "ChildData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ChildData2": {
+          "Name": "ChildData2",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "SharedString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "FormFactor": {
+          "Name": "FormFactor",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "FormFactor"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "MeshData": {
+          "Name": "MeshData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "MeshData2": {
+          "Name": "MeshData2",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "SharedString"
           },
           "Tags": [],
           "Kind": {
@@ -25251,6 +26922,9 @@
         "CastShadow": {
           "Bool": true
         },
+        "ChildData": {
+          "BinaryString": ""
+        },
         "CollisionGroup": {
           "String": "Default"
         },
@@ -25267,6 +26941,9 @@
         "CustomPhysicalProperties": {
           "PhysicalProperties": "Default"
         },
+        "FormFactor": {
+          "Enum": 3
+        },
         "FrontParamA": {
           "Float32": -0.5
         },
@@ -25278,6 +26955,16 @@
         },
         "FrontSurfaceInput": {
           "Enum": 0
+        },
+        "InitialSize": {
+          "Vector3": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "LODData": {
+          "BinaryString": ""
         },
         "LeftParamA": {
           "Float32": -0.5
@@ -25299,6 +26986,15 @@
         },
         "Material": {
           "Enum": 256
+        },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
+        "MeshData": {
+          "BinaryString": ""
+        },
+        "PhysicsData": {
+          "BinaryString": ""
         },
         "PivotOffset": {
           "CFrame": {
@@ -25401,9 +27097,42 @@
       "Name": "PartOperationAsset",
       "Tags": [],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "ChildData": {
+          "Name": "ChildData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "MeshData": {
+          "Name": "MeshData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
+          "BinaryString": ""
+        },
+        "ChildData": {
+          "BinaryString": ""
+        },
+        "MeshData": {
           "BinaryString": ""
         },
         "SourceAssetId": {
@@ -26039,56 +27768,6 @@
           "Float32": 0.0
         }
       }
-    },
-    "PatchMapping": {
-      "Name": "PatchMapping",
-      "Tags": [
-        "NotCreatable",
-        "NotReplicated"
-      ],
-      "Superclass": "Instance",
-      "Properties": {
-        "FlattenTree": {
-          "Name": "FlattenTree",
-          "Scriptability": "ReadWrite",
-          "DataType": {
-            "Value": "Bool"
-          },
-          "Tags": [],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "Serializes"
-            }
-          }
-        },
-        "PatchId": {
-          "Name": "PatchId",
-          "Scriptability": "ReadWrite",
-          "DataType": {
-            "Value": "String"
-          },
-          "Tags": [],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "Serializes"
-            }
-          }
-        },
-        "TargetPath": {
-          "Name": "TargetPath",
-          "Scriptability": "ReadWrite",
-          "DataType": {
-            "Value": "String"
-          },
-          "Tags": [],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "Serializes"
-            }
-          }
-        }
-      },
-      "DefaultProperties": {}
     },
     "Path": {
       "Name": "Path",
@@ -27008,8 +28687,7 @@
             "Value": "String"
           },
           "Tags": [
-            "Deprecated",
-            "NotBrowsable"
+            "Deprecated"
           ],
           "Kind": {
             "Canonical": {
@@ -27231,6 +28909,19 @@
             "NotReplicated",
             "ReadOnly"
           ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "HasVerifiedBadge": {
+          "Name": "HasVerifiedBadge",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
@@ -27876,6 +29567,22 @@
             }
           }
         },
+        "UseStrafingAnimations": {
+          "Name": "UseStrafingAnimations",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [
+            "NotReplicated",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "localPlayer": {
           "Name": "localPlayer",
           "Scriptability": "Read",
@@ -27934,6 +29641,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "UseStrafingAnimations": {
+          "Bool": false
         }
       }
     },
@@ -29031,7 +30741,6 @@
     "ProximityPromptService": {
       "Name": "ProximityPromptService",
       "Tags": [
-        "NotBrowsable",
         "Service"
       ],
       "Superclass": "Instance",
@@ -29884,7 +31593,6 @@
     "RenderSettings": {
       "Name": "RenderSettings",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable",
         "Service"
       ],
@@ -30464,7 +32172,6 @@
     "RobloxReplicatedStorage": {
       "Name": "RobloxReplicatedStorage",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable",
         "Service"
       ],
@@ -31215,6 +32922,19 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "ValuesAndTimes": {
+          "Name": "ValuesAndTimes",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -31226,6 +32946,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "ValuesAndTimes": {
+          "BinaryString": "AAAAAAAAAAAAAAAAAAAWRQAAAAA="
         }
       }
     },
@@ -31311,6 +33034,19 @@
       "Tags": [],
       "Superclass": "LayerCollector",
       "Properties": {
+        "ClipToDeviceSafeArea": {
+          "Name": "ClipToDeviceSafeArea",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "DisplayOrder": {
           "Name": "DisplayOrder",
           "Scriptability": "ReadWrite",
@@ -31333,7 +33069,7 @@
           "Tags": [],
           "Kind": {
             "Canonical": {
-              "Serialization": "Serializes"
+              "Serialization": "DoesNotSerialize"
             }
           }
         },
@@ -31351,6 +33087,32 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "SafeAreaCompatibility": {
+          "Name": "SafeAreaCompatibility",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Enum": "SafeAreaCompatibility"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ScreenInsets": {
+          "Name": "ScreenInsets",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Enum": "ScreenInsets"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -31360,17 +33122,23 @@
         "AutoLocalize": {
           "Bool": true
         },
+        "ClipToDeviceSafeArea": {
+          "Bool": true
+        },
         "DisplayOrder": {
           "Int32": 0
         },
         "Enabled": {
           "Bool": true
         },
-        "IgnoreGuiInset": {
-          "Bool": false
-        },
         "ResetOnSpawn": {
           "Bool": true
+        },
+        "SafeAreaCompatibility": {
+          "Enum": 1
+        },
+        "ScreenInsets": {
+          "Enum": 2
         },
         "SelectionBehaviorDown": {
           "Enum": 0
@@ -31545,6 +33313,9 @@
         "RunContext": {
           "Enum": 0
         },
+        "ScriptGuid": {
+          "String": "{C496137C-DC37-443F-8ACC-404A61B7E747}"
+        },
         "Source": {
           "String": ""
         },
@@ -31555,6 +33326,16 @@
           "BinaryString": ""
         }
       }
+    },
+    "ScriptBuilder": {
+      "Name": "ScriptBuilder",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated"
+      ],
+      "Superclass": "Instance",
+      "Properties": {},
+      "DefaultProperties": {}
     },
     "ScriptChangeService": {
       "Name": "ScriptChangeService",
@@ -32378,6 +34159,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -32921,7 +34705,6 @@
     "ServiceProvider": {
       "Name": "ServiceProvider",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -33032,6 +34815,17 @@
           "BinaryString": ""
         }
       }
+    },
+    "ShorelineUpgraderService": {
+      "Name": "ShorelineUpgraderService",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated",
+        "Service"
+      ],
+      "Superclass": "Instance",
+      "Properties": {},
+      "DefaultProperties": {}
     },
     "SkateboardController": {
       "Name": "SkateboardController",
@@ -33282,6 +35076,9 @@
         },
         "Material": {
           "Enum": 256
+        },
+        "MaterialVariantSerialized": {
+          "String": ""
         },
         "PivotOffset": {
           "CFrame": {
@@ -34112,7 +35909,6 @@
             "Value": "Int32"
           },
           "Tags": [
-            "NotBrowsable",
             "NotReplicated",
             "ReadOnly"
           ],
@@ -34160,6 +35956,7 @@
             "Value": "Bool"
           },
           "Tags": [
+            "Hidden",
             "NotReplicated",
             "ReadOnly"
           ],
@@ -34176,12 +35973,26 @@
             "Value": "Bool"
           },
           "Tags": [
+            "Hidden",
             "NotReplicated",
             "ReadOnly"
           ],
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "LoopRegion": {
+          "Name": "LoopRegion",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "NumberRange"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         },
@@ -34271,6 +36082,32 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "PlaybackRegion": {
+          "Name": "PlaybackRegion",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "NumberRange"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "PlaybackRegionsEnabled": {
+          "Name": "PlaybackRegionsEnabled",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         },
@@ -34471,6 +36308,12 @@
         "EmitterSize": {
           "Float32": 10.0
         },
+        "LoopRegion": {
+          "NumberRange": [
+            0.0,
+            60000.0
+          ]
+        },
         "Looped": {
           "Bool": false
         },
@@ -34478,6 +36321,15 @@
           "Float32": 10000.0
         },
         "PlayOnRemove": {
+          "Bool": false
+        },
+        "PlaybackRegion": {
+          "NumberRange": [
+            0.0,
+            60000.0
+          ]
+        },
+        "PlaybackRegionsEnabled": {
           "Bool": false
         },
         "PlaybackSpeed": {
@@ -34982,6 +36834,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "Neutral": {
           "Bool": true
         },
@@ -35103,7 +36958,6 @@
             "Value": "Int32"
           },
           "Tags": [
-            "NotBrowsable",
             "NotReplicated",
             "ReadOnly"
           ],
@@ -35252,6 +37106,12 @@
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "LODX": {
+          "Enum": 2
+        },
+        "LODY": {
+          "Enum": 2
         },
         "MeshId": {
           "Content": ""
@@ -36535,6 +38395,19 @@
             }
           }
         },
+        "HumanoidStateMachineMode": {
+          "Name": "HumanoidStateMachineMode",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Enum": "HumanoidStateMachineMode"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "LoadCharacterAppearance": {
           "Name": "LoadCharacterAppearance",
           "Scriptability": "ReadWrite",
@@ -36714,6 +38587,9 @@
         },
         "HealthDisplayDistance": {
           "Float32": 100.0
+        },
+        "HumanoidStateMachineMode": {
+          "Enum": 0
         },
         "LoadCharacterAppearance": {
           "Bool": true
@@ -37455,6 +39331,19 @@
             }
           }
         },
+        "Display Team Create toggle when creating a new experience": {
+          "Name": "Display Team Create toggle when creating a new experience",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "DisplayLanguage": {
           "Name": "DisplayLanguage",
           "Scriptability": "None",
@@ -37694,6 +39583,19 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "File > New creates a place with Team Create off": {
+          "Name": "File > New creates a place with Team Create off",
+          "Scriptability": "ReadWrite",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         },
@@ -38820,6 +40722,45 @@
       ],
       "Superclass": "Instance",
       "Properties": {
+        "CommitInflightAuthorId": {
+          "Name": "CommitInflightAuthorId",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "CommitInflightGuid": {
+          "Name": "CommitInflightGuid",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "CommitInflightPlaceVersion": {
+          "Name": "CommitInflightPlaceVersion",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "EnableScriptCollabByDefaultOnLoad": {
           "Name": "EnableScriptCollabByDefaultOnLoad",
           "Scriptability": "None",
@@ -38828,38 +40769,6 @@
           },
           "Tags": [
             "Hidden"
-          ],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "Serializes"
-            }
-          }
-        },
-        "SrcPlaceId": {
-          "Name": "SrcPlaceId",
-          "Scriptability": "None",
-          "DataType": {
-            "Value": "Int64"
-          },
-          "Tags": [
-            "Hidden",
-            "NotReplicated"
-          ],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "Serializes"
-            }
-          }
-        },
-        "SrcUniverseId": {
-          "Name": "SrcUniverseId",
-          "Scriptability": "None",
-          "DataType": {
-            "Value": "Int64"
-          },
-          "Tags": [
-            "Hidden",
-            "NotReplicated"
           ],
           "Kind": {
             "Canonical": {
@@ -38877,12 +40786,6 @@
         },
         "SourceAssetId": {
           "Int64": -1
-        },
-        "SrcPlaceId": {
-          "Int64": 0
-        },
-        "SrcUniverseId": {
-          "Int64": 0
         },
         "Tags": {
           "BinaryString": ""
@@ -39778,9 +41681,7 @@
     },
     "SwimController": {
       "Name": "SwimController",
-      "Tags": [
-        "NotBrowsable"
-      ],
+      "Tags": [],
       "Superclass": "ControllerBase",
       "Properties": {
         "AccelerationTime": {
@@ -40256,6 +42157,58 @@
       ],
       "Superclass": "BasePart",
       "Properties": {
+        "AcquisitionMethod": {
+          "Name": "AcquisitionMethod",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "TerrainAcquisitionMethod"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ClusterGrid": {
+          "Name": "ClusterGrid",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "ClusterGridV2": {
+          "Name": "ClusterGridV2",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "ClusterGridV3": {
+          "Name": "ClusterGridV3",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
         "Decoration": {
           "Name": "Decoration",
           "Scriptability": "None",
@@ -40335,6 +42288,47 @@
             }
           }
         },
+        "PhysicsGrid": {
+          "Name": "PhysicsGrid",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ShorelinesUpgraded": {
+          "Name": "ShorelinesUpgraded",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [
+            "Hidden"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "SmoothGrid": {
+          "Name": "SmoothGrid",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "WaterColor": {
           "Name": "WaterColor",
           "Scriptability": "ReadWrite",
@@ -40402,6 +42396,9 @@
         }
       },
       "DefaultProperties": {
+        "AcquisitionMethod": {
+          "Enum": 0
+        },
         "Anchored": {
           "Bool": true
         },
@@ -40525,6 +42522,12 @@
         "MaterialColors": {
           "BinaryString": "AAAAAAAAan8/P39rf2Y/ilY+j35fi21PZmxvZbDqw8faiVpHOi4kHh4lZlw76JxKc3trhHtagcLgc4RKxr21zq2UlJSM"
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
+        "PhysicsGrid": {
+          "BinaryString": "AgMAAAAAAAAAAAAAAAA="
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -40576,12 +42579,18 @@
             0.0
           ]
         },
+        "ShorelinesUpgraded": {
+          "Bool": false
+        },
         "Size": {
           "Vector3": [
             2044.0,
             252.0,
             2044.0
           ]
+        },
+        "SmoothGrid": {
+          "BinaryString": "AQU="
         },
         "SourceAssetId": {
           "Int64": -1
@@ -40727,6 +42736,19 @@
               "Serialization": "Serializes"
             }
           }
+        },
+        "TexturePack": {
+          "Name": "TexturePack",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Content"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -40759,6 +42781,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "TexturePack": {
+          "Content": ""
         }
       }
     },
@@ -40767,6 +42792,45 @@
       "Tags": [],
       "Superclass": "Instance",
       "Properties": {
+        "ExtentsMax": {
+          "Name": "ExtentsMax",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Vector3int16"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ExtentsMin": {
+          "Name": "ExtentsMin",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Vector3int16"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "GridV3": {
+          "Name": "GridV3",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
         "IsSmooth": {
           "Name": "IsSmooth",
           "Scriptability": "Read",
@@ -40799,11 +42863,41 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "SmoothGrid": {
+          "Name": "SmoothGrid",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "ExtentsMax": {
+          "Vector3int16": [
+            0,
+            0,
+            0
+          ]
+        },
+        "ExtentsMin": {
+          "Vector3int16": [
+            0,
+            0,
+            0
+          ]
+        },
+        "SmoothGrid": {
+          "BinaryString": "AQU="
         },
         "SourceAssetId": {
           "Int64": -1
@@ -41078,7 +43172,9 @@
           "DataType": {
             "Enum": "Font"
           },
-          "Tags": [],
+          "Tags": [
+            "Hidden"
+          ],
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
@@ -41719,7 +43815,9 @@
           "DataType": {
             "Enum": "Font"
           },
-          "Tags": [],
+          "Tags": [
+            "Hidden"
+          ],
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
@@ -42532,7 +44630,9 @@
           "DataType": {
             "Enum": "Font"
           },
-          "Tags": [],
+          "Tags": [
+            "Hidden"
+          ],
           "Kind": {
             "Canonical": {
               "Serialization": "Serializes"
@@ -43746,7 +45846,6 @@
     "TouchTransmitter": {
       "Name": "TouchTransmitter",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -44270,6 +46369,32 @@
             }
           }
         },
+        "InitialSize": {
+          "Name": "InitialSize",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Vector3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "LODData": {
+          "Name": "LODData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "MeshSize": {
           "Name": "MeshSize",
           "Scriptability": "Read",
@@ -44283,6 +46408,32 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "PhysicalConfigData": {
+          "Name": "PhysicalConfigData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "SharedString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "PhysicsData": {
+          "Name": "PhysicsData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         }
@@ -44305,7 +46456,22 @@
           ],
           "Kind": {
             "Canonical": {
-              "Serialization": "DoesNotSerialize"
+              "Serialization": {
+                "SerializesAs": "style"
+              }
+            }
+          }
+        },
+        "style": {
+          "Name": "style",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "Style"
+          },
+          "Tags": [],
+          "Kind": {
+            "Alias": {
+              "AliasFor": "Style"
             }
           }
         }
@@ -44428,6 +46594,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -44488,6 +46657,9 @@
         },
         "SourceAssetId": {
           "Int64": -1
+        },
+        "Style": {
+          "Enum": 0
         },
         "Tags": {
           "BinaryString": ""
@@ -44553,7 +46725,6 @@
     "TweenBase": {
       "Name": "TweenBase",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable"
       ],
       "Superclass": "Instance",
@@ -45877,6 +48048,9 @@
         "CastShadow": {
           "Bool": true
         },
+        "ChildData": {
+          "BinaryString": ""
+        },
         "CollisionGroup": {
           "String": "Default"
         },
@@ -45893,6 +48067,9 @@
         "CustomPhysicalProperties": {
           "PhysicalProperties": "Default"
         },
+        "FormFactor": {
+          "Enum": 3
+        },
         "FrontParamA": {
           "Float32": -0.5
         },
@@ -45904,6 +48081,16 @@
         },
         "FrontSurfaceInput": {
           "Enum": 0
+        },
+        "InitialSize": {
+          "Vector3": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "LODData": {
+          "BinaryString": ""
         },
         "LeftParamA": {
           "Float32": -0.5
@@ -45925,6 +48112,15 @@
         },
         "Material": {
           "Enum": 256
+        },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
+        "MeshData": {
+          "BinaryString": ""
+        },
+        "PhysicsData": {
+          "BinaryString": ""
         },
         "PivotOffset": {
           "CFrame": {
@@ -46121,10 +48317,27 @@
         "Service"
       ],
       "Superclass": "Instance",
-      "Properties": {},
+      "Properties": {
+        "CachedData": {
+          "Name": "CachedData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "String"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        }
+      },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
+        },
+        "CachedData": {
+          "String": "{\"lastSaveTime\":0,\"lastKnownPublishRequest\":0,\"users\":[]}"
         },
         "SourceAssetId": {
           "Int64": -1
@@ -47235,6 +49448,23 @@
               "Serialization": "DoesNotSerialize"
             }
           }
+        },
+        "VRSessionState": {
+          "Name": "VRSessionState",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "VRSessionState"
+          },
+          "Tags": [
+            "Hidden",
+            "NotReplicated",
+            "ReadOnly"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -47688,6 +49918,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "MaxSpeed": {
           "Float32": 25.0
         },
@@ -47799,7 +50032,9 @@
     },
     "VelocityMotor": {
       "Name": "VelocityMotor",
-      "Tags": [],
+      "Tags": [
+        "Deprecated"
+      ],
       "Superclass": "JointInstance",
       "Properties": {
         "CurrentAngle": {
@@ -48282,6 +50517,32 @@
             }
           }
         },
+        "CameraCFrame": {
+          "Name": "CameraCFrame",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "CameraFieldOfView": {
+          "Name": "CameraFieldOfView",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "CurrentCamera": {
           "Name": "CurrentCamera",
           "Scriptability": "ReadWrite",
@@ -48414,6 +50675,35 @@
         },
         "BorderSizePixel": {
           "Int32": 1
+        },
+        "CameraCFrame": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "CameraFieldOfView": {
+          "Float32": 1.2217306
         },
         "ClipsDescendants": {
           "Bool": false
@@ -48560,6 +50850,16 @@
       "Properties": {},
       "DefaultProperties": {}
     },
+    "VisibilityCheckDispatcher": {
+      "Name": "VisibilityCheckDispatcher",
+      "Tags": [
+        "NotCreatable",
+        "Service"
+      ],
+      "Superclass": "Instance",
+      "Properties": {},
+      "DefaultProperties": {}
+    },
     "VisibilityService": {
       "Name": "VisibilityService",
       "Tags": [
@@ -48601,7 +50901,6 @@
     "VoiceChatInternal": {
       "Name": "VoiceChatInternal",
       "Tags": [
-        "NotBrowsable",
         "NotCreatable",
         "Service"
       ],
@@ -48868,6 +51167,9 @@
         "Material": {
           "Enum": 256
         },
+        "MaterialVariantSerialized": {
+          "String": ""
+        },
         "PivotOffset": {
           "CFrame": {
             "position": [
@@ -49049,6 +51351,19 @@
             }
           }
         },
+        "CFrame0": {
+          "Name": "CFrame0",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "CFrame"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "Enabled": {
           "Name": "Enabled",
           "Scriptability": "ReadWrite",
@@ -49123,14 +51438,56 @@
               "AliasFor": "Part1"
             }
           }
+        },
+        "State": {
+          "Name": "State",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Int32"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
         "Attributes": {
           "BinaryString": ""
         },
+        "CFrame0": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
         "SourceAssetId": {
           "Int64": -1
+        },
+        "State": {
+          "Int32": 3
         },
         "Tags": {
           "BinaryString": ""
@@ -49252,6 +51609,19 @@
           "Scriptability": "ReadWrite",
           "DataType": {
             "Enum": "ClientAnimatorThrottlingMode"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "CollisionGroupData": {
+          "Name": "CollisionGroupData",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "BinaryString"
           },
           "Tags": [],
           "Kind": {
@@ -49531,21 +51901,6 @@
             }
           }
         },
-        "StreamingPauseMode": {
-          "Name": "StreamingPauseMode",
-          "Scriptability": "None",
-          "DataType": {
-            "Enum": "StreamingPauseMode"
-          },
-          "Tags": [
-            "NotScriptable"
-          ],
-          "Kind": {
-            "Canonical": {
-              "Serialization": "Serializes"
-            }
-          }
-        },
         "StreamingTargetRadius": {
           "Name": "StreamingTargetRadius",
           "Scriptability": "None",
@@ -49574,6 +51929,19 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "TerrainWeldsFixed": {
+          "Name": "TerrainWeldsFixed",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Bool"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         },
@@ -49621,8 +51989,8 @@
         "ClientAnimatorThrottling": {
           "Enum": 0
         },
-        "CollisionGroups": {
-          "String": "Default^0^-1"
+        "CollisionGroupData": {
+          "BinaryString": "AQEABP////8HRGVmYXVsdA=="
         },
         "DistributedGameTime": {
           "Float64": 0.0
@@ -49655,6 +52023,45 @@
         "MeshPartHeadsAndAccessories": {
           "Enum": 0
         },
+        "ModelMeshCFrame": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "ModelMeshSize": {
+          "Vector3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "ModelStreamingMode": {
+          "Enum": 0
+        },
+        "NeedsPivotMigration": {
+          "Bool": false
+        },
         "PhysicsSteppingMethod": {
           "Enum": 0
         },
@@ -49682,20 +52089,46 @@
         "StreamingMinRadius": {
           "Int32": 64
         },
-        "StreamingPauseMode": {
-          "Enum": 0
-        },
         "StreamingTargetRadius": {
           "Int32": 1024
         },
         "Tags": {
           "BinaryString": ""
         },
+        "TerrainWeldsFixed": {
+          "Bool": true
+        },
         "TouchesUseCollisionGroups": {
           "Bool": false
         },
         "UnionsScaleNonuniformly": {
           "Enum": 0
+        },
+        "WorldPivotData": {
+          "OptionalCFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
         }
       }
     },
@@ -49704,7 +52137,85 @@
       "Tags": [],
       "Superclass": "WorldRoot",
       "Properties": {},
-      "DefaultProperties": {}
+      "DefaultProperties": {
+        "Attributes": {
+          "BinaryString": ""
+        },
+        "LevelOfDetail": {
+          "Enum": 0
+        },
+        "ModelMeshCFrame": {
+          "CFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        },
+        "ModelMeshSize": {
+          "Vector3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "ModelStreamingMode": {
+          "Enum": 0
+        },
+        "NeedsPivotMigration": {
+          "Bool": false
+        },
+        "SourceAssetId": {
+          "Int64": -1
+        },
+        "Tags": {
+          "BinaryString": ""
+        },
+        "WorldPivotData": {
+          "OptionalCFrame": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        }
+      }
     },
     "WorldRoot": {
       "Name": "WorldRoot",
@@ -49871,6 +52382,19 @@
               "Serialization": "Serializes"
             }
           }
+        },
+        "TemporaryReferenceId": {
+          "Name": "TemporaryReferenceId",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Content"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
         }
       },
       "DefaultProperties": {
@@ -50010,6 +52534,12 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "TemporaryCageMeshId": {
+          "Content": ""
+        },
+        "TemporaryReferenceId": {
+          "Content": ""
         }
       }
     },
@@ -50134,6 +52664,9 @@
         },
         "Tags": {
           "BinaryString": ""
+        },
+        "TemporaryCageMeshId": {
+          "Content": ""
         }
       }
     }
@@ -50360,6 +52893,7 @@
         "Face": 18,
         "FaceAccessory": 42,
         "FallAnimation": 50,
+        "FontFamily": 73,
         "FrontAccessory": 45,
         "GamePass": 34,
         "Gear": 19,
@@ -50909,6 +53443,9 @@
         "PlacelaunchRestricted": 523,
         "PlacelaunchUnauthorized": 524,
         "PlacelaunchUserLeft": 522,
+        "PlacelaunchUserPrivacyUnauthorized": 533,
+        "PlayerRemoved": 291,
+        "ReplicatorTimeout": 290,
         "TeleportErrors": 768,
         "TeleportFailure": 769,
         "TeleportFlooded": 774,
@@ -50957,7 +53494,8 @@
         "Chat": 3,
         "EmotesMenu": 5,
         "Health": 1,
-        "PlayerList": 0
+        "PlayerList": 0,
+        "SelfView": 6
       }
     },
     "CreateOutfitFailure": {
@@ -51236,6 +53774,10 @@
         "Skip8": 5
       }
     },
+    "ExperienceAuthScope": {
+      "name": "ExperienceAuthScope",
+      "items": {}
+    },
     "ExplosionType": {
       "name": "ExplosionType",
       "items": {
@@ -51250,6 +53792,16 @@
         "Place": 1,
         "PlaceServer": 3,
         "Server": 2
+      }
+    },
+    "FacialAnimationStreamingState": {
+      "name": "FacialAnimationStreamingState",
+      "items": {
+        "Audio": 1,
+        "None": 0,
+        "Place": 4,
+        "Server": 8,
+        "Video": 2
       }
     },
     "FieldOfViewMode": {
@@ -51609,6 +54161,15 @@
       "items": {
         "R15": 1,
         "R6": 0
+      }
+    },
+    "HumanoidStateMachineMode": {
+      "name": "HumanoidStateMachineMode",
+      "items": {
+        "Default": 0,
+        "Legacy": 1,
+        "LuaStateMachine": 3,
+        "NoStateMachine": 2
       }
     },
     "HumanoidStateType": {
@@ -52192,6 +54753,14 @@
         "StreamingMesh": 1
       }
     },
+    "ModelStreamingMode": {
+      "name": "ModelStreamingMode",
+      "items": {
+        "Atomic": 1,
+        "Default": 0,
+        "Persistent": 2
+      }
+    },
     "ModifierKey": {
       "name": "ModifierKey",
       "items": {
@@ -52338,10 +54907,10 @@
     "ParticleFlipbookLayout": {
       "name": "ParticleFlipbookLayout",
       "items": {
-        "EightByEight": 3,
-        "FourByFour": 2,
-        "None": 0,
-        "TwoByTwo": 1
+        "Grid2x2": 1,
+        "Grid4x4": 2,
+        "Grid8x8": 3,
+        "None": 0
       }
     },
     "ParticleFlipbookMode": {
@@ -52634,9 +55203,9 @@
     "ReservedHighlightId": {
       "name": "ReservedHighlightId",
       "items": {
-        "Active": 128,
-        "Hover": 64,
-        "Selection": 32,
+        "Active": 131072,
+        "Hover": 262144,
+        "Selection": 524288,
         "Standard": 0
       }
     },
@@ -52749,6 +55318,13 @@
         "Snapshot": 1
       }
     },
+    "SafeAreaCompatibility": {
+      "name": "SafeAreaCompatibility",
+      "items": {
+        "FullscreenExtension": 1,
+        "None": 0
+      }
+    },
     "SaveFilter": {
       "name": "SaveFilter",
       "items": {
@@ -52781,6 +55357,18 @@
         "Slice": 1,
         "Stretch": 0,
         "Tile": 2
+      }
+    },
+    "ScopeCheckResult": {
+      "name": "ScopeCheckResult",
+      "items": {}
+    },
+    "ScreenInsets": {
+      "name": "ScreenInsets",
+      "items": {
+        "CoreUISafeInsets": 2,
+        "DeviceSafeInsets": 1,
+        "None": 0
       }
     },
     "ScreenOrientation": {
@@ -52896,7 +55484,8 @@
       "items": {
         "Default": 0,
         "Disabled": 1,
-        "MinimumRadiusPause": 2
+        "MinimumRadiusPause": 2,
+        "PauseOutsideLoadedArea": 3
       }
     },
     "StreamingPauseMode": {
@@ -53531,6 +56120,15 @@
         "None": 22,
         "TextInput": 20,
         "Touch": 7
+      }
+    },
+    "VRSessionState": {
+      "name": "VRSessionState",
+      "items": {
+        "Focused": 3,
+        "Idle": 1,
+        "Undefined": 0,
+        "Visible": 2
       }
     },
     "VRTouchpad": {
