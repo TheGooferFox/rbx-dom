@@ -75,8 +75,29 @@ impl Attributes {
     }
 
     /// Returns an iterator of borrowed attributes.
-    pub fn iter(&self) -> impl Iterator<Item = (&String, &Variant)> {
-        self.data.iter()
+    #[inline]
+    pub fn iter(&self) -> AttributesIter<'_> {
+        AttributesIter {
+            iter: self.data.iter(),
+        }
+    }
+
+    /// Returns the number of attributes.
+    #[inline]
+    pub fn len(&self) -> usize {
+        self.data.len()
+    }
+
+    /// Returns true if the struct contains no attributes.
+    #[inline]
+    pub fn is_empty(&self) -> bool {
+        self.data.is_empty()
+    }
+}
+
+impl Extend<(String, Variant)> for Attributes {
+    fn extend<T: IntoIterator<Item = (String, Variant)>>(&mut self, iter: T) {
+        self.data.extend(iter)
     }
 }
 
@@ -87,6 +108,17 @@ impl IntoIterator for Attributes {
     fn into_iter(self) -> Self::IntoIter {
         AttributesIntoIter {
             iter: self.data.into_iter(),
+        }
+    }
+}
+
+impl<'a> IntoIterator for &'a Attributes {
+    type IntoIter = AttributesIter<'a>;
+    type Item = (&'a String, &'a Variant);
+
+    fn into_iter(self) -> Self::IntoIter {
+        AttributesIter {
+            iter: self.data.iter(),
         }
     }
 }
@@ -107,6 +139,20 @@ pub struct AttributesIntoIter {
 
 impl Iterator for AttributesIntoIter {
     type Item = (String, Variant);
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.iter.next()
+    }
+}
+
+/// A borrowed iterator over the entries of an `Attributes`.
+/// This is created by [`Attributes::iter`].
+pub struct AttributesIter<'a> {
+    iter: btree_map::Iter<'a, String, Variant>,
+}
+
+impl<'a> Iterator for AttributesIter<'a> {
+    type Item = (&'a String, &'a Variant);
 
     fn next(&mut self) -> Option<Self::Item> {
         self.iter.next()

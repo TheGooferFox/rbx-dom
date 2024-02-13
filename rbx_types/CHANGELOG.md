@@ -1,6 +1,46 @@
 # rbx_types Changelog
 
 ## Unreleased Changes
+* Implement `IntoIterator` for `&Attributes`. ([#386])
+* Implement `Extend<(String, Variant)>` for `Attributes`. ([#386])
+
+[#386]: https://github.com/rojo-rbx/rbx-dom/pull/386
+
+## 1.8.0 (2024-01-16)
+* Add `len` and `is_empty` methods to `Attributes` struct. ([#377])
+
+[#377]: https://github.com/rojo-rbx/rbx-dom/pull/377
+
+## 1.7.0 (2023-10-03)
+* Implemented `FromStr` for `TerrainMaterials`. ([#354])
+* `MaterialColorsError` and `UniqueIdError` are no longer publicly exposed. ([#355])
+* Implemented barebones `SecurityCapabilities`. ([#358])
+* Implement `Display` for `SharedStringHash` ([#363])
+
+[#354]: https://github.com/rojo-rbx/rbx-dom/pull/354
+[#355]: https://github.com/rojo-rbx/rbx-dom/pull/355
+[#358]: https://github.com/rojo-rbx/rbx-dom/pull/358
+[#363]: https://github.com/rojo-rbx/rbx-dom/pull/363
+
+## 1.6.0 (2023-08-09)
+* Added support for `UniqueId` values. ([#271])
+* Changed `BinaryString`'s non-human readable serde implementation to be identical to `Vec<u8>`. ([#276])
+* Added `Font::new` and `Font::regular` constructors. ([#283])
+* Added support for `CFrame` values in attributes. ([#296])
+* Added support for `Font` values in attributes. ([#299])
+* Implemented `MaterialColors`. ([#323])
+
+[#271]: https://github.com/rojo-rbx/rbx-dom/pull/271
+[#276]: https://github.com/rojo-rbx/rbx-dom/pull/276
+[#283]: https://github.com/rojo-rbx/rbx-dom/pull/283
+[#296]: https://github.com/rojo-rbx/rbx-dom/pull/296
+[#299]: https://github.com/rojo-rbx/rbx-dom/pull/299
+[#323]: https://github.com/rojo-rbx/rbx-dom/pull/323
+
+## 1.5.0 (2023-04-22)
+* Implemented `Font`. ([#248])
+
+[#248]: https://github.com/rojo-rbx/rbx-dom/pull/248
 
 ## 1.4.2 (2022-06-12)
 * `Variant::String` now encodes correctly inside of `Attributes`.
