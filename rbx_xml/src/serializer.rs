@@ -2,7 +2,7 @@
 //!
 //! This module wraps the low-level XML writer functions (such as property and instance
 //! serialization) into a single convenience function, `to_string`.
-
+use std::borrow::Cow;
 use std::collections::{BTreeMap, HashMap};
 use std::io::Write;
 use std::error::Error;
