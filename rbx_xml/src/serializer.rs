@@ -1,17 +1,14 @@
-//! High-level serializer for converting a Roblox DOM into an XML string.
+//! High-level serializer for converting a Roblox DOM (WeakDom) into an XML string.
 //!
-//! This module wraps the low-level XML writer functions (such as `encode_internal`)
-//! and exposes a single convenience function, `to_string`, which accepts a WeakDom,
-//! a slice of top-level instance IDs, and serialization options, then returns the XML string.
+//! This module wraps the low-level XML writer functions (including property and instance
+//! serialization) into a single convenience function, `to_string`.
 
 use std::collections::{BTreeMap, HashMap};
 use std::io::Write;
 use std::error::Error;
 
-use rbx_dom_weak::{
-    WeakDom,
-    types::{Ref, SharedString, SharedStringHash, Variant, VariantType},
-};
+// Import WeakDom from rbx_dom_weak (note: not from `rbx_dom_weak::types`)
+use rbx_dom_weak::{WeakDom, types::{Ref, SharedString, SharedStringHash, Variant, VariantType}};
 use rbx_reflection::{DataType, PropertyKind, PropertySerialization, ReflectionDatabase};
 
 use crate::{
@@ -22,21 +19,21 @@ use crate::{
 };
 use crate::serializer_core::{XmlEventWriter, XmlWriteEvent};
 
-/// Describes the strategy that rbx_xml should use when serializing properties.
+/// Describes the strategy that rbx_xml uses when serializing properties.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[non_exhaustive]
 pub enum EncodePropertyBehavior {
-    /// Ignores properties that aren't known by rbx_xml.
+    /// Ignores properties not known by rbx_xml.
     IgnoreUnknown,
-    /// Writes unrecognized properties.
+    /// Writes properties even if unknown.
     WriteUnknown,
-    /// Returns an error if any properties are found that aren't known.
+    /// Returns an error if encountering an unknown property.
     ErrorOnUnknown,
-    /// Completely disables reflection; properties are serialized as in the tree.
+    /// Disables reflection; properties are serialized as-is.
     NoReflection,
 }
 
-/// Options available for serializing an XML-format model or place.
+/// Options available for serializing a Roblox model or place.
 #[derive(Debug, Clone)]
 pub struct EncodeOptions<'db> {
     pub property_behavior: EncodePropertyBehavior,
@@ -44,7 +41,7 @@ pub struct EncodeOptions<'db> {
 }
 
 impl<'db> EncodeOptions<'db> {
-    /// Constructs a new `EncodeOptions` with defaults.
+    /// Constructs default EncodeOptions.
     #[inline]
     pub fn new() -> Self {
         EncodeOptions {
@@ -53,13 +50,13 @@ impl<'db> EncodeOptions<'db> {
         }
     }
 
-    /// Sets the property behavior.
+    /// Set property behavior.
     #[inline]
     pub fn property_behavior(self, property_behavior: EncodePropertyBehavior) -> Self {
         EncodeOptions { property_behavior, ..self }
     }
 
-    /// Sets the reflection database.
+    /// Set a custom reflection database.
     #[inline]
     pub fn reflection_database(self, database: &'db ReflectionDatabase<'db>) -> Self {
         EncodeOptions { database, ..self }
@@ -76,14 +73,14 @@ impl<'db> Default for EncodeOptions<'db> {
     }
 }
 
-/// Internal state for XML emission.
+/// Internal state for emitting XML.
 pub struct EmitState<'db> {
     pub options: EncodeOptions<'db>,
-    /// Maps instance IDs to their generated referent.
+    /// Maps instance IDs to generated referent numbers.
     pub referent_map: HashMap<Ref, u32>,
-    /// Next referent value to emit.
+    /// Next referent value.
     pub next_referent: u32,
-    /// Map of shared strings to be written later.
+    /// Map of shared strings referenced while serializing.
     pub shared_strings_to_emit: BTreeMap<SharedStringHash, SharedString>,
 }
 
@@ -113,7 +110,7 @@ impl<'db> EmitState<'db> {
     }
 }
 
-/// Serializes a single instance (and its children) using the low-level writer.
+/// Serializes a single instance (and its children) into XML.
 fn serialize_instance<'dom, W: Write>(
     writer: &mut XmlEventWriter<W>,
     state: &mut EmitState,
@@ -132,6 +129,7 @@ fn serialize_instance<'dom, W: Write>(
 
     writer.write(XmlWriteEvent::start_element("Properties"))?;
 
+    // Write the "Name" property.
     write_value_xml(
         writer,
         state,
@@ -139,7 +137,7 @@ fn serialize_instance<'dom, W: Write>(
         &Variant::String(instance.name.clone()),
     )?;
 
-    // Collect properties to sort them.
+    // Gather properties into a buffer so we can sort them.
     property_buffer.extend(&instance.properties);
     property_buffer.sort_unstable_by_key(|(key, _)| *key);
 
@@ -178,7 +176,6 @@ fn serialize_instance<'dom, W: Write>(
                 }
             };
 
-            // Handle property migrations.
             if let PropertyKind::Canonical {
                 serialization: PropertySerialization::Migrate(migration),
             } = &serialized_descriptor.kind
@@ -208,7 +205,6 @@ fn serialize_instance<'dom, W: Write>(
 
     writer.write(XmlWriteEvent::end_element())?;
 
-    // Recursively serialize children.
     for child_id in instance.children() {
         serialize_instance(writer, state, tree, *child_id, property_buffer)?;
     }
@@ -218,7 +214,7 @@ fn serialize_instance<'dom, W: Write>(
     Ok(())
 }
 
-/// Serializes any shared strings as a SharedStrings XML block.
+/// Serializes shared strings as a SharedStrings XML block.
 fn serialize_shared_strings<W: Write>(
     writer: &mut XmlEventWriter<W>,
     state: &mut EmitState,
@@ -232,12 +228,10 @@ fn serialize_shared_strings<W: Write>(
     for value in state.shared_strings_to_emit.values() {
         let full_hash = value.hash();
         let truncated_hash = &full_hash.as_bytes()[..16];
-
         writer.write(
             XmlWriteEvent::start_element("SharedString")
                 .attr("md5", &base64::encode(truncated_hash)),
         )?;
-
         writer.write_string(&base64::encode(value.data()))?;
         writer.end_element()?;
     }
@@ -246,8 +240,7 @@ fn serialize_shared_strings<W: Write>(
     Ok(())
 }
 
-/// High-level API that converts a WeakDom into an XML string.
-/// `ids` contains the top-level instance IDs to serialize; `options` controls serialization.
+/// High-level API: converts a WeakDom (with top-level instance IDs) into an XML string.
 pub fn to_string(
     tree: &WeakDom,
     ids: &[Ref],
@@ -255,8 +248,7 @@ pub fn to_string(
 ) -> Result<String, Box<dyn Error>> {
     let mut output = Vec::new();
     encode_internal(&mut output, tree, ids, options)?;
-    // Map UTF-8 conversion errors to a plain error string.
-    let xml_string = String::from_utf8(output)
-        .map_err(|e| format!("UTF-8 conversion error: {}", e))?;
+    // Instead of using a Custom variant (which doesn't exist), map UTF-8 errors to a simple error message.
+    let xml_string = String::from_utf8(output).map_err(|e| format!("UTF-8 conversion error: {}", e))?;
     Ok(xml_string)
 }
