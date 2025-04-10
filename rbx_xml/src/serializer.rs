@@ -1,16 +1,20 @@
 //! High-level serializer for converting a Roblox DOM (WeakDom) into an XML string.
 //!
-//! This module wraps the low-level XML writer functions (including property and instance
-//! serialization) into a single convenience function, `to_string`.
+//! This module wraps the low-level XML writer functions (including instance and property
+//! serialization) into a single convenience function (`to_string`) that produces a complete XML document.
 
 use std::collections::{BTreeMap, HashMap};
 use std::io::Write;
 use std::error::Error;
 
-// Import WeakDom from rbx_dom_weak (note: not from `rbx_dom_weak::types`)
-use rbx_dom_weak::{WeakDom, types::{Ref, SharedString, SharedStringHash, Variant, VariantType}};
+// Import WeakDom directly from rbx_dom_weak.
+use rbx_dom_weak::{
+    WeakDom,
+    types::{Ref, SharedString, SharedStringHash, Variant, VariantType},
+};
 use rbx_reflection::{DataType, PropertyKind, PropertySerialization, ReflectionDatabase};
 
+// These imports refer to our internal modules in rbx_xml.
 use crate::{
     conversion::ConvertVariant,
     core::find_serialized_property_descriptor,
@@ -19,21 +23,17 @@ use crate::{
 };
 use crate::serializer_core::{XmlEventWriter, XmlWriteEvent};
 
-/// Describes the strategy that rbx_xml uses when serializing properties.
+/// Strategy for handling properties that aren’t recognized.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[non_exhaustive]
 pub enum EncodePropertyBehavior {
-    /// Ignores properties not known by rbx_xml.
     IgnoreUnknown,
-    /// Writes properties even if unknown.
     WriteUnknown,
-    /// Returns an error if encountering an unknown property.
     ErrorOnUnknown,
-    /// Disables reflection; properties are serialized as-is.
     NoReflection,
 }
 
-/// Options available for serializing a Roblox model or place.
+/// Options for serializing a Roblox model or place.
 #[derive(Debug, Clone)]
 pub struct EncodeOptions<'db> {
     pub property_behavior: EncodePropertyBehavior,
@@ -41,7 +41,7 @@ pub struct EncodeOptions<'db> {
 }
 
 impl<'db> EncodeOptions<'db> {
-    /// Constructs default EncodeOptions.
+    /// Returns default options.
     #[inline]
     pub fn new() -> Self {
         EncodeOptions {
@@ -50,13 +50,11 @@ impl<'db> EncodeOptions<'db> {
         }
     }
 
-    /// Set property behavior.
     #[inline]
     pub fn property_behavior(self, property_behavior: EncodePropertyBehavior) -> Self {
         EncodeOptions { property_behavior, ..self }
     }
 
-    /// Set a custom reflection database.
     #[inline]
     pub fn reflection_database(self, database: &'db ReflectionDatabase<'db>) -> Self {
         EncodeOptions { database, ..self }
@@ -68,7 +66,7 @@ impl<'db> EncodeOptions<'db> {
 }
 
 impl<'db> Default for EncodeOptions<'db> {
-    fn default() -> Self {
+    fn default() -> EncodeOptions<'db> {
         EncodeOptions::new()
     }
 }
@@ -78,9 +76,9 @@ pub struct EmitState<'db> {
     pub options: EncodeOptions<'db>,
     /// Maps instance IDs to generated referent numbers.
     pub referent_map: HashMap<Ref, u32>,
-    /// Next referent value.
+    /// The next referent value to emit.
     pub next_referent: u32,
-    /// Map of shared strings referenced while serializing.
+    /// Map of shared strings referenced during serialization.
     pub shared_strings_to_emit: BTreeMap<SharedStringHash, SharedString>,
 }
 
@@ -110,6 +108,31 @@ impl<'db> EmitState<'db> {
     }
 }
 
+/// Low-level function that writes the XML representation into the provided writer.
+/// This function is assumed to exist in your fork (as already implemented in rbx_xml).
+pub fn encode_internal<W: Write>(
+    output: W,
+    tree: &WeakDom,
+    ids: &[Ref],
+    options: EncodeOptions,
+) -> Result<(), NewEncodeError> {
+    let mut writer = XmlEventWriter::from_output(output);
+    let mut state = EmitState::new(options);
+
+    writer.write(XmlWriteEvent::start_element("roblox").attr("version", "4"))?;
+
+    let mut property_buffer = Vec::new();
+    for id in ids {
+        serialize_instance(&mut writer, &mut state, tree, *id, &mut property_buffer)?;
+    }
+
+    serialize_shared_strings(&mut writer, &mut state)?;
+
+    writer.write(XmlWriteEvent::end_element())?;
+
+    Ok(())
+}
+
 /// Serializes a single instance (and its children) into XML.
 fn serialize_instance<'dom, W: Write>(
     writer: &mut XmlEventWriter<W>,
@@ -129,7 +152,6 @@ fn serialize_instance<'dom, W: Write>(
 
     writer.write(XmlWriteEvent::start_element("Properties"))?;
 
-    // Write the "Name" property.
     write_value_xml(
         writer,
         state,
@@ -137,7 +159,7 @@ fn serialize_instance<'dom, W: Write>(
         &Variant::String(instance.name.clone()),
     )?;
 
-    // Gather properties into a buffer so we can sort them.
+    // Collect properties for sorted iteration.
     property_buffer.extend(&instance.properties);
     property_buffer.sort_unstable_by_key(|(key, _)| *key);
 
@@ -228,6 +250,7 @@ fn serialize_shared_strings<W: Write>(
     for value in state.shared_strings_to_emit.values() {
         let full_hash = value.hash();
         let truncated_hash = &full_hash.as_bytes()[..16];
+
         writer.write(
             XmlWriteEvent::start_element("SharedString")
                 .attr("md5", &base64::encode(truncated_hash)),
@@ -240,7 +263,7 @@ fn serialize_shared_strings<W: Write>(
     Ok(())
 }
 
-/// High-level API: converts a WeakDom (with top-level instance IDs) into an XML string.
+/// High-level API: converts the given WeakDom (with top-level instance IDs) into an XML string.
 pub fn to_string(
     tree: &WeakDom,
     ids: &[Ref],
@@ -248,7 +271,7 @@ pub fn to_string(
 ) -> Result<String, Box<dyn Error>> {
     let mut output = Vec::new();
     encode_internal(&mut output, tree, ids, options)?;
-    // Instead of using a Custom variant (which doesn't exist), map UTF-8 errors to a simple error message.
-    let xml_string = String::from_utf8(output).map_err(|e| format!("UTF-8 conversion error: {}", e))?;
+    let xml_string = String::from_utf8(output)
+        .map_err(|e| format!("UTF-8 conversion error: {}", e))?;
     Ok(xml_string)
 }
