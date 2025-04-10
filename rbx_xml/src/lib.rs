@@ -114,7 +114,7 @@ mod core;
 mod deserializer;
 mod deserializer_core;
 mod error;
-mod serializer;
+pub mod serializer;
 mod serializer_core;
 mod types;
 
