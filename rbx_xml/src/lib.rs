@@ -179,3 +179,4 @@ pub fn to_writer_default<W: Write>(
 ) -> Result<(), EncodeError> {
     encode_internal(writer, tree, ids, EncodeOptions::default())
 }
+
